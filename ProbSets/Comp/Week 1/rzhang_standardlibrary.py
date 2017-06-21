@@ -1,6 +1,6 @@
 import calculator as calc
 import box
-import random as rand
+import random
 import sys
 
 def problem1(A):
@@ -50,15 +50,44 @@ def problem4():
     if len(sys.argv) > 1:
         name = sys.argv[1]
     else:
-        name = raw_input("Please enter your name: ")
+        name = input("Player name: ")
     game = True
-    num_left = range(1,10)
-    dice = range(1,7)
+    num_left = list(range(1,10))
+    dice = list(range(1,7))
     while game:
         print ("Numbers left: ", num_left)
-        roll = random.choice(dice)
+        if sum(num_left) <= 6:
+            roll = random.choice(dice)
+        else:
+            roll = random.choice(dice) + random.choice(dice)
         print ("Roll: ", roll)
-        remove = sys.argv
+        if roll==1:
+            if num_left[0]!=1:
+                game = False
+        else:
+            game = box.isvalid(roll,num_left)
+        if game:
+            remove_text = input("Numbers to eliminate: ")
+            remove = box.parse_input(remove_text, num_left)
+            while remove==[] or sum(remove)!=roll:
+                print("Invalid input")
+                remove_text = input("Numbers to eliminate: ")
+                remove = box.parse_input(remove_text,num_left)
+            for x in remove:
+                num_left.remove(x)
+            if num_left==[]:
+                break
+        else:
+            print("Game Over!")
+            break
 
+    score = sum(num_left)
+    print ("Score for player TA: ",score," points")
+    if score==0:
+        print("Congratulations!! You shut the box!")
+
+test = [1, 4, 2, -3, 5, 8]
+print(problem1(test))
 problem2()
+print("3-4-",problem3(3, 4), "5-12-", problem3(5,12))
 problem4()
