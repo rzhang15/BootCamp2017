@@ -77,7 +77,6 @@ class ComplexNumber(object):
             raise ValueError("Cannot divide by zero")
         bottom = (other.conjugate()*other*1.).real
         top = self*other.conjugate()
-        #print (str(ComplexNumber(top.real / bottom, top.imag / bottom)))
         return ComplexNumber(top.real / bottom, top.imag / bottom)
 
     def __eq__(self, other):
