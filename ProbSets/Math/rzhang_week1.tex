@@ -18,6 +18,7 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{natbib}
+\usepackage{upgreek}
 \usepackage{setspace}
 \usepackage{float,color}
 \usepackage[pdftex]{graphicx}
@@ -74,7 +75,7 @@ Open Source Macroeconomics Laboratory Boot Camp}
         & = (1 - P(E_1))\times(1-P(E_2)) \\
         & = P(E_1^c) \times P(E_2^c)
       \end{align*}
-    From the rule of unions and intersections, we have that $(\cup_{k=1}^n E_k)^c = \cap_{k=1}^n E_k^c$. In addition, since $\{E_k\}_{k=1}^n$ is a collection of independent events, so from the previous proof we have that $\{E_k^c\}_{k=1}^n$ is also a collection of independent events. Then we have that:
+    From the rule of unions and intersections, we have that $(\cup_{k=1}^n E_k)^c = \cap_{k=1}^n E_k^c$. In addition, since $\{E_k\}_{k=1}^n$ is a collection of independent events, so by extending the previous proof inductively we have that $\{E_k^c\}_{k=1}^n$ is also a collection of independent events. Then we have that:
       \begin{align*}
         P(\cup_{k=1}^n E_k) &= 1 - P((\cup_{k=1}^n E_k)^c) \\
         &= 1 - P(\cap_{k=1}^n E_k^c) \\
@@ -109,7 +110,7 @@ Open Source Macroeconomics Laboratory Boot Camp}
           P(|\frac{\sum_{i=1}^n B_i}{n} - p| \geq \epsilon) = P(|\frac{B}{n} - p| \geq \epsilon) \leq \frac{p(1-p)}{n\epsilon^2}
         \end{equation*}
     \item[3.36]
-      Let $S_n = \sum_{i=1}^6242 X_i$, where $X_i$ is the probability that student $i$ will enroll at the school, so $X_i$'s are independently Bernoulli distributed random variables. Thus, $E[X_i]=\mu = 0.801$ and $Var[X_i] = 0.801 \times 0.199 = 0.1594$. We want to estimate $P(S_n \geq 5500) = 1 - P(S_n \leq 5500)$. Using the Central Limit Theorem, we have the estimation that:
+      Let $S_n = \sum_{i=1}^{6242} X_i$, where $X_i$ is the probability that student $i$ will enroll at the school, so $X_i$'s are independently Bernoulli distributed random variables. Thus, $E[X_i]=\mu = 0.801$ and $Var[X_i] = 0.801 \times 0.199 = 0.1594$. We want to estimate $P(S_n \geq 5500) = 1 - P(S_n \leq 5500)$. Using the Central Limit Theorem, we have the estimation that:
         \begin{align*}
           P(\frac{S_n - n\mu}{\sigma\sqrt{n}} \leq y) &= P(S_n \leq \sigma\sqrt{n}y + n\mu) \\
           & \approx \frac{1}{\sqrt{2\pi}}\int_{-\infty}^y e^{\frac{-x^2}{2}}dx
@@ -128,7 +129,21 @@ Open Source Macroeconomics Laboratory Boot Camp}
   \item
     \begin{enumerate}
       \item
+        Suppose we toss two independent coins. Let A be the event that coin 1 is heads and B be the event that coin 2 is heads. Let C be the event if there is exactly one head amongst the two coin tosses. The four possible outcomes are: $\Omega = \{HH, TT, HT, TH\}$, thus we have that $P(B)=P(C)=P(A)=\frac{1}{2}$. Note the following observations:
+          \begin{align*}
+            P(A \cap B) & = P(\{HH\}) = \frac{1}{4} = P(A)P(B) \\
+            P(A \cap C) & = P(\{HT\}) = \frac{1}{4} = P(A)P(C) \\
+            P(B \cap C) & = P(\{TH\}) = \frac{1}{4} = P(B)P(C) \\
+            P(A \cap B \cap C) &= P(\{\}) = 0 \neq P(A)P(B)P(C)
+          \end{align*}
       \item
+        Suppose we have a fair 8-sided die. Let $B = \{1, 2, 3, 4\}, C = \{1,5,6,7\}$ and $A = \{1, 4, 7, 8\}$ denote events that consist of possible die rolls. Then $P(B)=P(C)=P(A)=\frac{1}{2}$. Note the following observations:
+          \begin{align*}
+            P(A \cap B) & = P(\{1,4\}) = \frac{1}{4} = P(A)P(B) \\
+            P(A \cap C) & = P(\{1,7\}) = \frac{1}{4} = P(A)P(C) \\
+            P(A \cap B \cap C) & = P(\{1\}) = \frac{1}{8} = P(A)P(B)P(C) \\
+            P(B \cap C) &= P(\{1\}) = \frac{1}{8} \neq P(B)P(C)
+          \end{align*}
     \end{enumerate}
   \item
     To prove that Benson's Law is a well-defined discrete probability distribution, we must show that the probability of the entire space of outcomes is 1:
@@ -146,27 +161,140 @@ Open Source Macroeconomics Laboratory Boot Camp}
         Since the player has log utility, for a given winning $x_n = \$2^n$, the utility $u_n = n\log{2}$. The probability has not changed, thus we have that $E[\log{X}] = \sum_{n = 1}^\infty p_nu_n = \log{2} \sum_{n = 1}^\infty \frac{n}{2^n} = 2\log{2}$, which was found using Wolfram Alpha.
     \end{enumerate}
   \item
+    If the U.S. investor invests a dollar in the Swiss currency instead of U.S. currency this year, there is $\frac{1}{2}$ chance that next year he will receive $\$1.25$ USD. and $\frac{1}{2}$ chance that next year he will receive $0.80$ USD. Thus, the expected value is $\frac{1.25 + 0.8}{2} = \$1.025$ USD. Thus, the U.S. investor should invest in Swiss currency.
+    If the Swiss investor invests a dollar in U.S. currency instead of Swiss currency, there is $\frac{1}{2}$ chance that next year he will receive $\$1.25$ CHF and $\frac{1}{2}$ chance that next year he will receive $0.80$ CHF. Thus, the expected value is $\frac{1.25 + 0.8}{2} = \$1.025$ CHF. Similarly, the Swiss investor should invest in U.S. currency.
   \item
     \begin{enumerate}
       \item
+        Let the probability density function of X be the following:
+          \[
+            f_X(x) =
+            \begin{cases}
+              \frac{2}{x^3} & x \geq 1 \\
+              0 & otherwise
+            \end{cases}
+          \]
+        Note that $\int_{-\infty}^{\infty} f_X(x) dx = \int_1^{\infty} \frac{2}{x^3}dx= 1$, thus this is a valid continuous random variable. Note that:
+          \begin{align*}
+            E[X] &= \int_1^{\infty} x\frac{2}{x^3} dx \\
+            &= [-\frac{2}{x}]_1^{\infty} \\
+            &= 2 \\
+            E[X^2] &=\int_1^{\infty} x^2\frac{2}{x^3} dx \\
+            &= [2\log{x}]_1^{\infty} \\
+            &= \infty
+          \end{align*}
       \item
+      Let $X \sim U(0,1)$ and $Y \sim exp(1.99)$. Thus, $E[X]=\frac{1}{2} < E[Y]=\frac{1}{1.99}$. Now we must show that $P(X > Y) > 1/2$:
+        \begin{align*}
+          P(X > Y) &= \int_{-\infty}^{\infty} P(X >Y|Y = y)f_Y(y)dy \\
+          &=  \int_{-\infty}^{\infty} P(X >y)f_Y(y)dy \\
+          &= \int_{-\infty}^{\infty} (1 - F_X(y))f_Y(y)dy \\
+          &= 1-\int_{-\infty}^{\infty}F_X(y)f_Y(y)dy \\
+          &= 1-(\int_0^1 y 1.99e^{-1.99y}dy + \int_1^{\infty} 1.99e^{-1.99y}dy)\\
+          &= 0.566
+        \end{align*}
       \item
+      Let $X \sim U(-1,1), Y \sim U(-2,2)$, and $Z \sim U(-3,3)$. From part b), we have that $P(X > Y) = 1-\int_{-\infty}^{\infty}F_X(y)f_Y(y)dy$. Using the pdfs and cdfs of the uniform distribution, we have that:
+        \begin{align*}
+          P(X > Y) &= 1 - \frac{1}{4} - \frac{1}{4} = \frac{1}{2} \\
+          P(X > Z) &= 1 - \frac{1}{6} - \frac{1}{3} = \frac{1}{2} \\
+          P(Z > Y) &= 1 - \frac{1}{3} - \frac{1}{6} = \frac{1}{2} \\
+        \end{align*}
+      Thus, $P(X > Y)P(X > Z)P(Z > Y) = \frac{1}{8} > 0$ and $E[X] = E[Y] = E[Z] = 0$.
     \end{enumerate}
   \item
     \begin{enumerate}
       \item
+      If $Z=1$, then $Y = X \sim N(0,1)$. If $Z=-1$, then $Y = -X \sim N(0,1)$ due to the symmetry of $N(0,1)$ about 0. Then for a given $y$, we have that:
+        \begin{align*}
+          P(Y < y) &= P(Y < y | Z = 1)P(Z=1) + P(Y < y | Z = -1)P(Z=-1)\\
+          &= \frac{P(X < y) + P(-X < y)}{2} \\
+          &= \frac{P(X < y) + P(X > -y)}{2} \\
+          &= P(X < y) \text{ due to symmetry of } N(0,1)
+        \end{align*}
+        Since this holds for all $y$, then $Y \sim N(0,1)$.
       \item
+      For any given value $X=x$, we have that $Y \in {-x, x}$, thus $|X| = |Y|$ with certainty. $P(|X|=|Y|)=1$ then follows.
       \item
+      Note that $f_{XY}(1, 2) = 0$ since $Y \in {-1,1}$. However, $f_X(1)f_Y(2) = f_X(1)f_X(2) \neq 0$. Thus, $X$ and $Y$ are not independent.
       \item
+      We have that $Cov[X,Y] = E[XY] - E[X]E[Y] = E[XY] = E[X^2Z] = \frac{E[X^2] - E[X^2]}{2} = 0$.
       \item
+      If $X,Y$ are two independent, normally distributed random variables, then $E[XY] = E[X]E[Y]$ so $Cov[X,Y] = E[XY] - E[X]E[Y] = 0$. Therefore, the statement is false.
     \end{enumerate}
   \item
+    First, let us state the cumulative distribution function of $X_i \sim U[0,1]$:
+      \[
+        F_{X_i}(x) =
+        \begin{cases}
+          1 & x > 1 \\
+          x & x \in [0,1] \\
+          0 & x < 0
+        \end{cases}
+      \]
+    First let us deal with the random variable $m = \min{\{X_1,...,X_n\}}$:
+      \begin{align*}
+        F_m(x) &= P(m \leq x) = 1 - P(X_i > x)^n \\
+        &= 1 - (1-P(X_i \leq x))^n = 1 - (1 - F_{X_i}(x))^n \\
+      \end{align*}
+        \[
+          \therefore F_m(x) =
+          \begin{cases}
+            1 & x > 1 \\
+            1-(1-x)^n & x \in [0,1] \\
+            0 & x < 0
+          \end{cases}
+        \]
+        \[
+          \therefore f_m(x) = F_m'(x) =
+          \begin{cases}
+            n(1-x)^{n-1} & x \in [0,1] \\
+            0 & otherwise
+          \end{cases}
+        \]
+      \begin{equation*}
+        \therefore E[m] = \int_0^1 xn(1-x)^{n-1}dx = \frac{1}{n+1}
+      \end{equation*}
+
+      Now let us deal with the random variable $M = \max{\{X_1,...,X_n\}}$:
+        \begin{align*}
+          F_M(x) &= P(M \leq x) = P(X_i \leq x)^n = F_{X_i}(x))^n
+        \end{align*}
+          \[
+            \therefore F_M(x) =
+            \begin{cases}
+              1 & x > 1 \\
+              x^n & x \in [0,1] \\
+              0 & x < 0
+            \end{cases}
+          \]
+          \[
+            \therefore f_M(x) = F_M'(x) =
+            \begin{cases}
+              nx^{n-1} & x \in [0,1] \\
+              0 & otherwise
+            \end{cases}
+          \]
+        \begin{equation*}
+          \therefore E[M] = \int_0^1 xnx^{n-1}dx = \frac{n}{n+1}
+        \end{equation*}
   \item
     \begin{enumerate}
       \item
+        Letting $S_n = \sum_{i=1}^{1000}X_i$, where $X_i$ is the probability of a good state in period $i$. Since the $X_i$'s are independent Bernoulli distributed random variables, $E[X_i] = \mu = 0.5$ and $\sigma^2 = 0.25$. We want to estimate $P(S_n \leq 510) - P(S_n \leq 490)$. Thus, using the Central limit theorem, we have that:
+          \begin{align*}
+            P(S_n \leq 510) & \approx \Upphi(\frac{510 - n\mu}{\sigma\sqrt{n}}) \\
+            &= \Upphi(\frac{2}{\sqrt{10}}) \\
+            P(S_n \leq 490) & \approx \Upphi(\frac{490 - n\mu}{\sigma\sqrt{n}}) \\
+            &= \Upphi(-\frac{2}{\sqrt{10}}) \\
+            \therefore P(S_n \leq 510) - P(S_n \leq 490) & \approx 0.47
+          \end{align*}
+        Therefore, there is a $47\%$ chance that the number of good states over 1000 periods differs from 500 by at most $2\%$.
       \item
+        We want to find $n$ such that $P(|\frac{S_n}{n} - \mu| \geq 0.005) \leq 0.01$. From the weak law of large numbers, we have that $\frac{\sigma^2}{n\epsilon^2} = \frac{0.25}{0.005n} = 0.01$. Therefore, $n = 5000$.
     \end{enumerate}
   \item
+  Since $E[X]$ is finite, we can use Jensen's inequality. Since $f(x) = e^{\theta x}$ is a differentiable convex function, according to Jensen's inequality, $E[e^{\theta X}] = 1 \geq e^{\theta E[X]}$. Since $E[X] < 0$, then $\theta > 0$ or else $1 \leq e^{\theta E[X]}$, which would contradict Jensen's inequality.
 
 \end{enumerate}
 
