@@ -165,6 +165,7 @@ Open Source Macroeconomics Laboratory Boot Camp}
     If the Swiss investor invests a dollar in U.S. currency instead of Swiss currency, there is $\frac{1}{2}$ chance that next year he will receive $\$1.25$ CHF and $\frac{1}{2}$ chance that next year he will receive $0.80$ CHF. Thus, the expected value is $\frac{1.25 + 0.8}{2} = \$1.025$ CHF. Similarly, the Swiss investor should invest in U.S. currency.
   \item
     \begin{enumerate}
+      Note that for all the following questions, the random variable are all valid since they are continuous (and thus map $[0,1]$ to $\mathds{R}$).
       \item
         Let the probability density function of X be the following:
           \[
@@ -220,7 +221,7 @@ Open Source Macroeconomics Laboratory Boot Camp}
       \item
       We have that $Cov[X,Y] = E[XY] - E[X]E[Y] = E[XY] = E[X^2Z] = \frac{E[X^2] - E[X^2]}{2} = 0$.
       \item
-      If $X,Y$ are two independent, normally distributed random variables, then $E[XY] = E[X]E[Y]$ so $Cov[X,Y] = E[XY] - E[X]E[Y] = 0$. Therefore, the statement is false.
+      As seen from the previous parts, $X, Y$ are normally distributed random variables with covariance zero, but are dependent. Therefore, the statement is false since there is a counterexample.
     \end{enumerate}
   \item
     First, let us state the cumulative distribution function of $X_i \sim U[0,1]$:
