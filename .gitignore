@@ -33,3 +33,5 @@ dist/*
 *.dat
 *.zip
 *.ipynb_checkpoints*
+*.cache*
+*.coverage*
