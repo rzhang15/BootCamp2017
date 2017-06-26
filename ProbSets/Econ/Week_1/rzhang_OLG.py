@@ -19,7 +19,7 @@ A = 1.0
 # Time Path parameters
 T = 10*periods
 TPI_tol = 1e-9
-xi = 0.15
+xi = 0.5
 
 def get_r(K, L, alpha, A, delta):
     return alpha*A*(L/K)**(1-alpha)-delta
@@ -112,13 +112,10 @@ def get_K(b_init, b_args, b_SS, labor):
             b3vec[i+1] = b_result.x[1]
 
         b2vec[T-1] = b2vec[T-2]
-
-        iteration = iteration+1
-
+        
         Knew = b2vec + b3vec
         Kdiff = np.square(Kvec-Knew)
         err = sqrt(np.sum(Kdiff))
-        print('Iteration:', iteration, ' Error:', err)
         Kvec = xi*Knew + (1-xi)*Kvec
     return Kvec
 
@@ -175,6 +172,7 @@ by the firm's problem.
 b_init = np.array([0.8*result1[0], 1.1*result1[1]])
 tpi_args = (delta, alpha, beta, sigma, A, T, TPI_tol, xi)
 K_TPI = get_K(b_init, tpi_args, result1, labor)
+print(K_TPI)
 
 '''
 Transition path of capital is 30 periods:
