@@ -34,4 +34,6 @@ dist/*
 *.zip
 *.ipynb_checkpoints*
 *.cache*
-*.coverage*
+<<<<<<< HEAD
+=======
+>>>>>>> upstream/master
