@@ -40,7 +40,7 @@ def get_MU(c, sigma):
         return c**(-sigma)
 
 def EulErr(bvec, *args):
-    delta, alpha, beta, sigma, A, l1, l2, l3, r2, r3, w1, w2 = args
+    delta, alpha, beta, sigma, A, l1, l2, l3, r2, r3, w1, w2, w3 = args
     b2 = bvec[0]
     b3 = bvec[1]
     if r2 == -1 and w1 == -1:
@@ -50,9 +50,10 @@ def EulErr(bvec, *args):
         r3 = r2
         w1 = get_w(K, L, alpha, A)
         w2 = w1
+        w3 = w1
     MU_c1 = get_MU(get_c(0, b2, 0, l1*w1), sigma)
     MU_c2 = get_MU(get_c(b2, b3, r2, l2*w2), sigma)
-    MU_c3 = get_MU(get_c(b3, 0, r3, l3*w2), sigma)
+    MU_c3 = get_MU(get_c(b3, 0, r3, l3*w3), sigma)
     err1 = MU_c1 - beta*(1+r2)*MU_c2
     err2 = MU_c2 - beta*(1+r3)*MU_c3
     err_vec = np.array([err1, err2])
@@ -61,7 +62,7 @@ def EulErr(bvec, *args):
 def SS_OLG(b_args, b2_init, b3_init, labor):
     delta, alpha, beta, sigma, A = b_args
     b_init = np.array([b2_init, b3_init])
-    eul_args = (delta, alpha, beta, sigma, A, labor[0], labor[1], labor[2], -1, -1, -1, -1)
+    eul_args = (delta, alpha, beta, sigma, A, labor[0], labor[1], labor[2], -1, -1, -1, -1, -1)
     b_result = opt.root(EulErr, b_init, args=(eul_args))
     b2 = b_result.x[0]
     b3 = b_result.x[1]
@@ -102,9 +103,10 @@ def get_K(b_init, b_args, b_SS, labor):
             l3 = labor[2]
             w1 = get_w(Kvec[i-1], L, alpha, A)
             w2 = get_w(Kvec[i], L, alpha, A)
+            w3 = get_w(Kvec[i+1], L, alpha, A)
             r2 = get_r(Kvec[i], L, alpha, A, delta)
             r3 = get_r(Kvec[i+1], L, alpha, A, delta)
-            pass_args = (delta, alpha, beta, sigma, A, l1, l2, l3, r2, r3, w1, w2)
+            pass_args = (delta, alpha, beta, sigma, A, l1, l2, l3, r2, r3, w1, w2, w3)
             b_result = opt.root(EulErr, b_init, args=(pass_args))
             b2vec[i] = b_result.x[0]
             b3vec[i+1] = b_result.x[1]
@@ -199,5 +201,5 @@ plt.close
 '''
 As shown by the image "timepathiteration.png", the equilibrium time path of
 the aggregate capital stock oscillates around the steady state, and converges
-by period 12. 
+by period 12.
 '''
