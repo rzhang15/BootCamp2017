@@ -449,40 +449,130 @@ Open Source Macroeconomics Laboratory Boot Camp}
               \end{equation*}
               Therefore, $A^* = A^H$.
             \item[(ii)]
-              
+            \begin{equation*}
+              \langle A_2A_1^*, A_3 \rangle = \langle A_2A_1^H, A_3 \rangle = \text{tr}(A_1A_2^HA_3) = \text{tr}(A_1(A_2^HA_3)) = \text{tr}(A_2^HA_3A_1) = \langle A_2, A_3A_1 \rangle
+            \end{equation*}
             \item[(iii)]
+            Using the fact that trace is a linear mapping (i.e. tr($A+B$) = tr($A$) + tr($B$)), we have that
+              \begin{align*}
+                \langle T_A^* X, Y \rangle &= \langle X, T_A Y \rangle = \langle X, AY - YA \rangle = \text{tr}(X^HAY - X^HYA) \\
+                &= \text{tr}(X^HAY) - \text{tr}(X^HYA) = \text{tr}(X^HAY) - \text{tr}(AX^HY) \\
+                &= \langle A^HX, Y \rangle - \langle XA^H, Y \rangle = \langle A^*X - XA^*, Y \rangle \\
+                &= \langle T_{A^*}X, Y \rangle \\
+                \therefore T_A^* &= T_{A^*}
+              \end{align*}
           \end{enumerate}
 
         \item[3.44]
+        From 3.40(i) and the fundamental subspaces theorem (3.8.9), we know that $\mathscr{R}(A)^{\perp} = \mathscr{N}(A^H)$. If $A\mathbf{x} = \mathbf{b}$ has a solution $\mathbf{x} \in \mathbb{F}^n$, then $\mathbf{b} \in \mathscr{R}(A)$, in which case by definition $\langle \mathbf{b}, \mathbf{y} \rangle = 0$ for all $\mathbf{y} \in \mathscr{R}(A)^{\perp} = \mathscr{N}(A^H)$. On the other hand, if there exists $\mathbf{y} \in \mathscr{N}(A^H) = \mathscr{R}(A)^{\perp}$ such that $\langle \mathbf{y}, \mathbf{b} \rangle \neq 0$, then by definition $\mathbf{b} \notin \mathscr{R}(A)$ since $\mathbf{b} \neq \mathbf{0}$ so there does not exist a solution to $A\mathbf{x} = \mathbf{b}$.
 
         \item[3.45]
+        From exercise 1.18, we know that:
+        \begin{align*}
+          \text{Sym}_n(\mathbb{R}) &= \{A \in M_n(\mathbb{R}) | A^T = A\} \\
+          \text{Skew}_n(\mathbb{R}) &= \{A \in M_n(\mathbb{R}) | A^T = -A\}
+        \end{align*}
+        Note that $A^H = A^T$ and $\langle A, B \rangle = \langle B, A \rangle$ for all $A, B \in M_n(\mathbb{R})$ since the conjugate of a real number is itself. Then for all $A \in \text{Sym}_n(\mathbb{R})$ and $B \in \text{Skew}_n(\mathbb{R})$:
+          \begin{align*}
+            \langle B, A \rangle &= \text{tr}(B^TA) = -\text{tr}(BA) = -\text{tr}(BA^T) = -\text{tr}(A^TB) = - \langle A, B \rangle = - \langle B, A \rangle \\
+            \therefore \langle B, A \rangle &= 0
+          \end{align*}
+          Then by definition, $\text{Skew}_n(\mathbb{R}) \subset \text{Sym}_n(\mathbb{R})^\perp$.
+
+          Now we will show the other way. Let $E_{ij} = e_ie_j^T$, (the zero matrix except for 1 in position (i,j)). Let $A = E_ij + Eji \in \text{Sym}_n(\mathbb{R})$. If $C \in \text{Sym}_n(\mathbb{R})^\perp$, then $\langle C, E_{ij} \rangle + \langle C, E_{ji} \rangle = 0 \Longrightarrow [C]_{ij} + [C]_{ji} = 0$ for all $i, j$. Therefore, $C^T = -C$ so $C \in \text{Skew}_n(\mathbb{R})$.
+
+          Therefore,  $\text{Skew}_n(\mathbb{R}) = \text{Sym}_n(\mathbb{R})^\perp$.
 
         \item[3.46]
           \begin{enumerate}
             \item[(i)]
+            If $\mathbf{x} \in \mathscr{N}(A^HA)$, then $A^H(A\mathbf{x}) = \mathbf{0}$. Therefore, $A\mathbf{x} \in \mathscr{N}(A^H)$ and obviously $\mathscr{R}(A)$ by definition.
             \item[(ii)]
+            If $\mathbf{x} \in \mathscr{N}(A)$, then $A^H(A\mathbf{x}) = A^H\mathbf{0} = \mathbf{0}$ so $\mathbf{x} \in \mathscr{N}(A^HA)$.
+            If $\mathbf{x} \in \mathscr{N}(A)$, then by previous part and the fundamental subspaces theorem, $A\mathbf{x} \in \mathscr{N}(A^H) = \mathscr{R}(A)^\perp$ and $\mathscr{R}(A)$. Thus, $\langle A\mathbf{x}, A\mathbf{x} \rangle = \mathbf{0}$ so $A\mathbf{x} = 0 \Longrightarrow \mathbf{x} \in \mathscr{N}(A)$.
             \item[(iii)]
+            By the rank nullity theorem, $\text{rank}(A) = n - \text{dim}(\mathscr{N}(A)) = n - \text{dim}(\mathscr{N}(A^HA)) = \text{rank}(A^HA)$.
             \item[(iv)]
+            If $A$ has linearly independent columns, then it is injective and has rank $n$. Thus, $ n = \text{rank}(A) = \text{rank}(A^HA)$ so $A^HA$ is an $n \times n$ matrix with full rank of $n$, making it nonsingular and bijective.
           \end{enumerate}
 
         \item[3.47]
           \begin{enumerate}
             \item[(i)]
+              \begin{equation*}
+                P^2 = (A(A^HA)^{-1}A^H)(A(A^HA)^{-1}A^H) = A(A^HA)^{-1}(A^HA)(A^HA)^{-1}A^H = A(A^HA)^{-1}A^H = P
+              \end{equation*}
             \item[(ii)]
+            Using the fact that $(B^H)^{-1} = (B^{-1})^H$, we have that
+            \begin{align*}
+              P^H &= (A(A^HA)^{-1}A^H)^H = (A^H)^H((A^HA)^{-1})^HA^H \\
+              &= A((A^HA)^H)^{-1}A^H = A(A^HA)^{-1}A^H\\
+              &=P
+            \end{align*}
             \item[(iii)]
+            Let $\mathbf{x} \in \mathscr{N}(P)$. Then we have that $P\mathbf{x} = A((A^HA)^{-1}A^H\mathbf{x}) = 0 \Longrightarrow (A^HA)^{-1}A^H\mathbf{x} \in \mathscr{N}(A)$. Since rank($A$) = $n$, then dim($\mathscr{N}(A)$) = 0 so $(A^HA)^{-1}(A^H\mathbf{x}) = 0$. Similarly $A^H\mathbf{x} \in \mathscr{N}((A^HA)^{-1})$. From question 3.46(iv), we know that $A^HA$ is nonsingular so rank($(A^HA)^{-1}$) = $n$ and dim($\mathscr{N}((A^HA)^{-1})$) = 0 $\Longrightarrow A^H\mathbf{x} = 0$. Similarly, $\mathbf{x} \in \mathscr{N}(A^H)$ and dim($\mathscr{N}(A^H)$) = dim($\mathscr{R}(A)^\perp$) = 0 so $\mathbf{x} = 0$. Thus, dim($\mathscr{N}(P)$) = 0 and rank($P$) = $n$ by rank nullity theorem.
           \end{enumerate}
 
         \item[3.48]
           \begin{enumerate}
             \item[(i)]
+            For any $A, B \in M_n(\mathbb{R})$ and $\alpha \in \mathbb{R}$, we have that
+              \begin{equation*}
+                P(A+\alpha B) = \frac{(A+\alpha B)+(A+\alpha B)^T}{2} = \frac{A+A^T}{2} + \alpha\frac{B+ B^T}{2} = P(A) + \alpha P(B)
+              \end{equation*}
+            which follows from the fact that the transpose is linear since the $(i,j)$ entry of $A^T + B^T$ is the sum of the $(i,j)$ entries of $A^T$ and $B^T$, which is the sum of the $(j,i)$ entries of $A$ and $B$, which is equal to $(i,j)$ entry of $(A+B)^T$.
             \item[(ii)]
+            \begin{align*}
+              P^2(A) &= P(\frac{P(A)+P(A)^T}{2}) = \frac{1}{2}P(\frac{A+A^T}{2}+\frac{A^T+A}{2}) \\
+              &= \frac{1}{2}P(A+A^T) = \frac{1}{2}\frac{A+A^T + A^T+A}{2} = \frac{A+A^T}{2} = P(A)
+            \end{align*}
             \item[(iii)]
+            \begin{align*}
+              \langle P(A), B \rangle &= \text{tr}((\frac{A+A^T}{2})^TB) = \text{tr}(\frac{AB}{2}) + \text{tr}(\frac{A^TB}{2}) = \text{tr}(\frac{A^TB^T}{2}) + \text{tr}(\frac{A^TB}{2}) \\
+              &= \text{tr}(A^T\frac{B^T+B}{2}) = \langle A, P(B) \rangle \\
+              \therefore P^* &= P
+            \end{align*}
             \item[(iv)]
+              Note that $P(A) = \frac{A^T+A}{2} = 0$ if and only if $A^T = -A$, in other words if $A \in \text{Skew}_n(\mathbb{R})$.
             \item[(v)]
+              If $B \in \mathscr{R}(P)$, then there exists matrix $A$ such that $B = \frac{A + A^T}{2} \Longrightarrow B^T = (\frac{A + A^T}{2})^T = \frac{A + A^T}{2} = B$. Therefore, $B \in \text{Sym}_n(\mathbb{R})$.
+              If $B \in \text{Sym}_n(\mathbb{R})$, then $B = B^T$ so $P(B) = \frac{B + B^T}{2} = \frac{2B}{2} = B$ so $B \in \mathscr{R}(P)$.
             \item[(vi)]
+              \begin{align*}
+                \|A-P(A)\|_F^2 &= \text{tr}((A-P(A))^T(A-P(A))) = \text{tr}((A^T-P(A)^T)(A-P(A))) \\
+                &= \text{tr}((A^T-P(A))(A-P(A))) \\
+                &= \text{tr}(A^TA) - \text{tr}(A^TP(A)) - \text{tr}(AP(A)) + \text{tr}((P(A))^2) \\
+                &= \text{tr}(A^TA) - 2\frac{\text{tr}(A^TA)}{2} - \frac{\text{tr}(A^TA^T)}{2} - \frac{\text{tr}(AA)}{2} + \text{tr}(\frac{A^2 + 2A^TA + (A^T)^2}{4}) \\
+                &= -\text{tr}(A^2) + \frac{\text{tr}(A^TA)}{2} + \frac{\text{tr}(A^2)}{2} = \frac{\text{tr}(A^TA)}{2} - \frac{\text{tr}(A^2)}{2} \\
+                \therefore \|A-P(A)\|_F &= \sqrt{\frac{\text{tr}(A^TA) - \text{tr}(A^2)}{2}}
+              \end{align*}
           \end{enumerate}
 
         \item[3.50]
+        We want to solve the normal equation $A^HA\mathbf{x} = A^H\mathbf{b}$ with the following $A, \mathbf{x}, \mathbf{b}$:
+        \[
+          A=
+          \begin{bmatrix}
+            x_1^2 & -1 \\
+            x_2^2 & -1 \\
+            \vdots & \vdots \\
+            rx_n^2 & -1
+          \end{bmatrix}
+          ,
+          \mathbf{x}=
+          \begin{bmatrix}
+            r \\
+            1
+          \end{bmatrix}
+          , \text{and }
+          \mathbf{b}= -s
+          \begin{bmatrix}
+            y_1^2 \\
+            y_2^2 \\
+            \vdots \\
+            y_n^2
+          \end{bmatrix}
+        \]
 
 \end{enumerate}
 
