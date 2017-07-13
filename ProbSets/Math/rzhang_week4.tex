@@ -1,0 +1,133 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=0.5in,rmargin=0.5in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{\footnotesize\textsl{OSM Lab, Summer 2017, Math PS \#4}}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{natbib}
+\usepackage{upgreek}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{dsfont}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue,citecolor=red}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+\begin{document}
+
+\title{Math Problem Set 4 \\
+Open Source Macroeconomics Laboratory Boot Camp}
+\author{Ruby Zhang}
+\maketitle
+
+\begin{enumerate}
+  \item[6.1]
+    Given $\mathbf{x},\mathbf{y} \in \mathbb{R}^n, a,b \in \mathbb{R}^n$ and $A \in M_n(\mathbb{R})$, choose $\mathbf{w}\in\mathbb{R}^n$ such that
+    \begin{align*}
+      \text{minimize }&-e^{-\mathbf{x}^T\mathbf{w}} \\
+      \text{subject to }& (A\mathbf{w}-A\mathbf{y}-\mathbf{x})^T\mathbf{w} \leq a \\
+      & (\mathbf{y}-\mathbf{x})^T\mathbf{w} = b
+    \end{align*}
+  \item[6.5]
+    Letting the vector $\mathbf{x} = [k\quad m]^T \in \mathbb{R}^2$ denote the amount of knobs and milk cartons respectively, the optimization problem in standard form is choosing $\mathbf{x} \in \mathbb{R}^2$ such that:
+    \begin{align*}
+      \text{minimize }&-[0.05 \quad 0.07]\mathbf{x}\\
+      \text{subject to }&
+        \begin{bmatrix}
+          3 & 4\\
+          1 & 2
+        \end{bmatrix}
+      \mathbf{x}\leq
+      \begin{bmatrix}
+       240000 \\
+       6000
+      \end{bmatrix}
+    \end{align*}
+  \item[6.6]
+    Let us find the Jacobian matrix of $f(x,y)$ to pinpoint the critical points:
+    \begin{align*}
+      Df(x,y) &= [6xy+4y^2+y \quad 3x^2+8xy+x] \\
+      &=[y(6x+4y+1)\quad x(3x+1)]
+    \end{align*}
+    From solving a basic systems of equations, we have that the points where $Df(x,y)=0$ are: $(0,0), (-\frac{1}{3},0), (0,-\frac{1}{4}), (-\frac{1}{9},-\frac{1}{12})$. To see whether they are local maxima, minima, or points, we must find the Hessian matrix and see if it's positive definite at the critical point:
+    \begin{align*}
+      D^2f(x,y) &=
+      \begin{bmatrix}
+        6y & 6x+8y+1 \\
+        6x+8y+1 & 8x
+      \end{bmatrix} \\
+      D^2f(0,0) &=
+      \begin{bmatrix}
+        0 & 1 \\
+        1 & 0
+      \end{bmatrix} \\
+      D^2f(-\frac{1}{3},0) &=
+      \begin{bmatrix}
+        0 & -1 \\
+        -1 & -\frac{8}{3}
+      \end{bmatrix} \\
+      D^2f(0,-\frac{1}{4}) &=
+      \begin{bmatrix}
+        -\frac{3}{2} & -1 \\
+        -1 & 0
+      \end{bmatrix} \\
+      D^2f(-\frac{1}{9},-\frac{1}{12}) &=
+      \begin{bmatrix}
+        -\frac{1}{2} & -\frac{1}{3} \\
+        -\frac{1}{3} & -\frac{8}{9}
+      \end{bmatrix}
+    \end{align*}
+    Based on the definition of positive definite matrices, note that $D^2f(0,0), D^2f(-\frac{1}{3},0), D^2f(0,-\frac{1}{4})$ have negative determinants, so all those points are saddle points. However, det($D^2f(-\frac{1}{9},-\frac{1}{12})$) $> 0$ and $D_{11} < 0$ so $(-\frac{1}{9},-\frac{1}{12})$ is a local maximum.
+  \item[6.11]
+    Using Newton's method and initial starting point $x_0$, we have that the next point is:
+    \begin{align*}
+      x_1 &= x_0 - \frac{f'(x_0)}{f''(x_0)} = x_0 - \frac{2ax_0+b}{2a} = -\frac{b}{2a}
+    \end{align*}
+    Plugging $x_1$ back into $f$, we see that $f'(x_1) = -b+b = 0$ and $f''(x_1) = 2a > 0$. Therefore, $x_1$ is a local minimum (and the unique one since only $x_1$ satisfies $f'(x)=0$).
+  \item[6.14]
+    Please refer to jupyter notebook rzhang15\textunderscore week4\textunderscore 6.14.ipynb for the implementation of Newton's method.
+
+\end{enumerate}
+
+\end{document}
