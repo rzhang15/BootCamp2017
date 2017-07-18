@@ -1,0 +1,185 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=0.5in,rmargin=0.5in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{\footnotesize\textsl{OSM Lab, Summer 2017, Math PS \#5}}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{natbib}
+\usepackage{upgreek}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{dsfont}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue,citecolor=red}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+\begin{document}
+
+\title{Math Problem Set 5 \\
+Open Source Macroeconomics Laboratory Boot Camp}
+\author{Ruby Zhang}
+\maketitle
+
+\begin{enumerate}
+  \item[7.1]
+    Take any two points $\mathbf{v},\mathbf{u} \in \text{conv}(S)$. Then $\mathbf{v}$ and $\mathbf{u}$ are convex combinations of elements of S, so let's write them as $\mathbf{v} = \alpha_1\mathbf{x}_1+\cdots+\alpha_k\mathbf{x}_k, \mathbf{v} = \beta_1\mathbf{y}_1+\cdots+\beta_n\mathbf{y}_n$ where $\mathbf{x}_i,\mathbf{y}_j \in S, k,n \in \mathbb{N}, \alpha_i,\beta_j \geq 0, \alpha_1+\cdots+\alpha_k = \beta_1+\cdots+\beta_n = 1$. Then for any $\lambda \in [0,1]$, we have that
+    \begin{align*}
+      \lambda\mathbf{v}+(1-\lambda)\mathbf{u} &= \lambda(\alpha_1\mathbf{x}_1+\cdots+\alpha_k\mathbf{x}_k) + (1-\lambda)(\beta_1\mathbf{y}_1+\cdots+\beta_n\mathbf{y}_n) \\
+      &= \lambda\alpha_1\mathbf{x}_1+\cdots+\lambda\alpha_k\mathbf{x}_k + (1-\lambda)\beta_1\mathbf{y}_1+\cdots+(1-\lambda)\beta_n\mathbf{y}_n)
+    \end{align*}
+    Note that
+    \begin{align*}
+      \lambda\alpha_1+\cdots+\lambda\alpha_k + (1-\lambda)\beta_1 + \cdots + (1-\lambda)\beta_n &= \lambda(\alpha_1+\cdots+\alpha_k)+(1-\lambda)(\beta_1+\cdots+\beta_n) \\
+      &= \lambda+(1-\lambda) = 1
+    \end{align*}
+    By definition, the result is also a convex combination of elements of $S$, which means that any convec combination of $\mathbf{v}$ and $\mathbf{u}$ are in conv($S$), thus making conv($S$) a convex set.
+  \item[7.2]
+    \begin{enumerate}
+      \item[(i)]
+        Take any two elements $\mathbf{x_1},\mathbf{x_2}$ in the hyperplane $P = \{\mathbf{x}\in V|\langle\mathbf{a},\mathbf{x}\rangle=b\}$. For all $\lambda\in[0,1]$, we have that:
+        \begin{align*}
+          \langle\mathbf{a},\lambda\mathbf{x_1}+(1-\lambda)\mathbf{x_2}\rangle &= \lambda\langle\mathbf{a},\mathbf{x-1}\rangle + (1-\lambda)\langle\mathbf{a},\mathbf{x_2}\rangle \\
+          &= \lambda b + (1-\lambda)b = b
+        \end{align*}
+        Therefore, any convex combination of two points in $P$ is still in hyperplane $P$ so hyperplanes are convex.
+      \item[(ii)]
+      Take any two elements $\mathbf{x_1},\mathbf{x_2}$ in the half-space $H = \{\mathbf{x}\in V|\langle\mathbf{a},\mathbf{x}\rangle\leq b\}$. For all $\lambda\in[0,1]$, we have that:
+      \begin{align*}
+        \langle\mathbf{a},\lambda\mathbf{x_1}+(1-\lambda)\mathbf{x_2}\rangle &= \lambda\langle\mathbf{a},\mathbf{x-1}\rangle + (1-\lambda)\langle\mathbf{a},\mathbf{x_2}\rangle \\
+        &\leq \lambda b + (1-\lambda)b = b
+      \end{align*}
+      Therefore, any convex combination of two points in $H$ is still in half-space $H$ so half-spaces are convex.
+    \end{enumerate}
+  \item[7.4]
+    \begin{enumerate}
+      \item[(i)]
+        \begin{align*}
+          \|\mathbf{x}-\mathbf{p}\|^2+\|\mathbf{p}-\mathbf{y}\|^2 + 2\langle\mathbf{x}-\mathbf{p},\mathbf{p}-\mathbf{y}\rangle &= \langle\mathbf{x}-\mathbf{p},\mathbf{x}-\mathbf{p}\rangle + \langle\mathbf{x}-\mathbf{p},\mathbf{p}-\mathbf{y}\rangle \\
+          &+ \langle\mathbf{p}-\mathbf{y},\mathbf{p}-\mathbf{y}\rangle + \langle\mathbf{x}-\mathbf{p},\mathbf{p}-\mathbf{y}\rangle \\
+          &= \langle \mathbf{x}-\mathbf{p}, \mathbf{x}-\mathbf{p}+\mathbf{p}-\mathbf{y} \rangle \\
+          &+ \langle \mathbf{x}-\mathbf{p} + \mathbf{p}-\mathbf{y}, \mathbf{p}-\mathbf{y} \rangle \\
+          &= \langle \mathbf{x}-\mathbf{p}, \mathbf{x}-\mathbf{y} \rangle + \langle \mathbf{x}-\mathbf{y},\mathbf{p}-\mathbf{y} \rangle  \\
+          &= \langle \mathbf{x}-\mathbf{y}, \mathbf{x}-\mathbf{p}+\mathbf{p}-\mathbf{y} \rangle \\
+          &= \langle \mathbf{x}-\mathbf{y},\mathbf{x}-\mathbf{y}\rangle \\
+          &= \|\mathbf{x}-\mathbf{y}\|^2
+        \end{align*}
+      \item[(ii)]
+        Suppose we have that $\langle\mathbf{x}-\mathbf{p},\mathbf{p}-\mathbf{y}\rangle \leq 0 \quad\forall \mathbf{y}\in C$. Since the inner product is always positive, we have that:
+        \begin{align*}
+          \|\mathbf{x}-\mathbf{y}\|^2&=\|\mathbf{x}-\mathbf{p}\|^2+\|\mathbf{p}-\mathbf{y}\|^2 + 2\langle\mathbf{x}-\mathbf{p},\mathbf{p}-\mathbf{y}\rangle \\
+          &\geq \|\mathbf{x}-\mathbf{p}\|^2+\|\mathbf{p}-\mathbf{y}\|^2 \\
+          &\geq  \|\mathbf{x}-\mathbf{p}\|^2 \\
+          \therefore \|\mathbf{x}-\mathbf{y}\| &> \|\mathbf{x}-\mathbf{p}\| \quad \forall \mathbf{y}\in C, \mathbf{y}\neq\mathbf{p}
+        \end{align*}
+      \item[(iii)]
+        Suppose $\mathbf{z}=\lambda\mathbf{y}+(1-\lambda)\mathbf{p}$ for $\lambda\in[0,1]$. Then we have:
+        \begin{align*}
+          \|\mathbf{x}-\mathbf{z}\|^2 &= \langle \mathbf{x}-\mathbf{z},\ \mathbf{x}-\mathbf{z}\rangle \\
+          &= \langle \mathbf{x}-\mathbf{z},\mathbf{x}-\lambda\mathbf{y}-(1-\lambda)\mathbf{p} \rangle \\
+          &= \langle \mathbf{x}-\mathbf{z}, \mathbf{x}-\mathbf{p} \rangle + \lambda \langle\mathbf{x}-\mathbf{z}, \mathbf{p}-\mathbf{y} \rangle \\
+          &= \langle \mathbf{x}-\mathbf{p},\mathbf{x}-\mathbf{p} \rangle + \lambda \langle \mathbf{p}-\mathbf{y}, \mathbf{x}-\mathbf{p}\rangle + \lambda\langle \mathbf{x}-\mathbf{p},\mathbf{p}-\mathbf{y} \rangle + \lambda^2\langle \mathbf{p}-\mathbf{y},\mathbf{p}-\mathbf{y}\rangle \\
+          &= \|\mathbf{x}-\mathbf{p}\|^2+2\lambda\langle \mathbf{x}-\mathbf{p},\mathbf{p}-\mathbf{y} \rangle + \lambda^2\|\mathbf{y}-\mathbf{p}\|^2
+        \end{align*}
+      \item[(iv)]
+        If $\mathbf{p}$ is a projection of $\mathbf{x}$ onto convex set $C$, then by definition $\|\mathbf{x}-\mathbf{p}\| \leq \|\mathbf{x}-\mathbf{y}\| \quad\forall \mathbf{y} \in C$. Since $C$ is convex, $\mathbf{z} = \lambda\mathbf{y}+(1-\lambda)\mathbf{p} \in C \quad\forall \mathbf{y}\in C, \lambda \in[0,1]$ and we have that $\|\mathbf{x}-\mathbf{p}\| \leq \|\mathbf{x}-\mathbf{z}\|$. Thus, $0 \leq \|\mathbf{x}-\mathbf{z}\|-\|\mathbf{x}-\mathbf{p}\| = 2\lambda\langle \mathbf{x}-\mathbf{p},\mathbf{p}-\mathbf{y} \rangle + \lambda^2\|\mathbf{y}-\mathbf{p}\|^2$ from part (iii). Since $0 \leq \lambda$, we have that $0 \leq 2\langle \mathbf{x}-\mathbf{p},\mathbf{p}-\mathbf{y} \rangle + \lambda\|\mathbf{y}-\mathbf{p}\|^2$.
+    \end{enumerate}
+    $\Longrightarrow$
+
+    Suppose that a point $\mathbf{p}$ is a projection of $\mathbf{x}$ onto convex set $C$. From part (iv), we know that $0 \leq 2\langle \mathbf{x}-\mathbf{p},\mathbf{p}-\mathbf{y} \rangle + \lambda\|\mathbf{y}-\mathbf{p}\|^2 \quad\forall\lambda\in[0,1]$. Then the statement holds true for $\lambda=0$, in which case $0 \leq 2\langle \mathbf{x}-\mathbf{p},\mathbf{p}-\mathbf{y} \rangle\Longrightarrow 0 \leq \langle \mathbf{x}-\mathbf{p},\mathbf{p}-\mathbf{y} \rangle$.
+
+    $\Longleftarrow$
+
+    Suppose we have that $\langle\mathbf{x}-\mathbf{p},\mathbf{p}-\mathbf{y}\rangle \leq 0 \quad\forall \mathbf{y}\in C$. According to part(ii), $\|\mathbf{x}-\mathbf{y}\| > \|\mathbf{x}-\mathbf{p}\| \quad \forall \mathbf{y}\in C, \mathbf{y}\neq\mathbf{p}$. By definition, $\mathbf{p}$ is the projection of $\mathbf{x}$ onto convex set $C$.
+  \item[7.6]
+    Take any two points $\mathbf{x_1},\mathbf{x_2} \in A=\{\mathbf{x}\in\mathbb{R}^n|f(\mathbf{x}\leq c)\}$. Since $f$ is a convec function, for any $\lambda\in[0,1]$, we have that
+    \begin{equation*}
+      f(\lambda\mathbf{x_1}+(1-\lambda)\mathbf{x_2}) \leq \lambda f(\mathbf{x_1})+(1-\lambda)f(\mathbf{x_2}) \leq \lambda c + (1-\lambda)c = c
+    \end{equation*}
+    Therefore, any convex combination of two points in $A$ is still in $A$, so set $A$ is convex.
+  \item[7.7]
+    Let $f(\mathbf{x}) = \sum_{i=1}^k \alpha_i f_i(\mathbf{x})$ where $\alpha_i\in \mathbf{R}_+, f_i:C\rightarrow \mathbb{R},f_i\text{ convex} \quad \forall 1\leq i \leq k$ and $C$ convex. Then $f:C\rightarrow\mathbb{R}$. For any two points $\mathbf{x_1},\mathbf{x_2}\in C$ and $\lambda\in[0,1]$, we have that
+    \begin{align*}
+      f(\lambda\mathbf{x_1}+(1-\lambda)\mathbf{x_2}) &= \sum_{i=1}^k \alpha_i f_i(\lambda\mathbf{x_1}+(1-\lambda)\mathbf{x_2}) \\
+      &\leq \lambda\sum_{i=1}^k \alpha_i f_i(\mathbf{x_1}) + (1-\lambda)\sum_{i=1}^k \alpha_if_i(\mathbf{x_2}) \\
+      &= \lambda f(\mathbf{x_1})+ (1-\lambda)f(\mathbf{x_2}) \\
+      \therefore & \quad f(\mathbf{x}) \text{ is a convex function}
+    \end{align*}
+  \item[7.13]
+    Let $f:\mathbb{R}^n\rightarrow \mathbb{R}$ be convex and bounded above by $M$. Suppose there exists two points $\mathbf{x_1}\neq\mathbf{x_2} \in \mathbb{R}^n$ such that $f(\mathbf{x_1})>f(\mathbf{x_2})$. Then for all $\lambda\in[0,1]$, we have that
+    \begin{align*}
+      f(\mathbf{x_1}) &= f(\lambda\frac{\mathbf{x_1}-(1-\lambda)\mathbf{x_2}}{\lambda}+(1-\lambda)\mathbf{x_2}) \\
+      &\leq \lambda f(\frac{\mathbf{x_1}-(1-\lambda)\mathbf{x_2}}{\lambda})+(1-\lambda)f(\mathbf{x_2}) \\
+      \frac{f(\mathbf{x_1})-(1-\lambda)f(\mathbf{x_2})}{\lambda} &\leq f(\frac{\mathbf{x_1}-(1-\lambda)f(\mathbf{x_2})}{\lambda}) < M \\
+      \therefore \frac{f(\mathbf{x_1})-f(\mathbf{x_2})}{\lambda} + f(\mathbf{x_2}) &< M
+    \end{align*}
+    However, the last statement is a contradiction since as $\lambda \rightarrow 0$, the expression approaches infinity, contradicting the fact that $f$ is bounded above.
+  \item[7.20]
+    Note that if $f(\mathbf{x}):\mathbb{R}^n\rightarrow\mathbb{R}$ is affine, then we can express it as $f(\mathbf{x}) = L(\mathbf{x})+c$ so for any $\mathbf{x_1},\mathbf{x_2}\in\mathbb{R}^n$ and $a,b\in\mathbb{R}$ we have that
+    \begin{align}
+      f(a\mathbf{x_1}+b\mathbf{x_2}) &= L(a\mathbf{x_1}+b\mathbf{x_2})+c \\
+      &=aL(\mathbf{x_1})+bL(\mathbf{x_2})+c \\
+      \therefore f(a\mathbf{x_1}+b\mathbf{x_2}) &= af(\mathbf{x_1})+bf(\mathbf{x_2})+(1-a-b)c
+    \end{align}
+
+    Now let us suppose that $f, -f$ are convex and $f$ is NOT affine. Then there exist $\mathbf{x_1},\mathbf{x_2}\in\mathbb{R}^n$ such that equation (3) does not hold for all $a,b\in\mathbb{R}$. Since $f$ is convex, for any $\lambda\in[0,1]$ we have that:
+    \begin{align*}
+      f(\lambda\mathbf{x_1}+(1-\lambda)\mathbf{x_2}) &\leq \lambda f(\mathbf{x_1})+(1-\lambda)f(\mathbf{x_2}) \\
+      f(\lambda\mathbf{x_1}+(1-\lambda)\mathbf{x_2}) &\geq -\lambda f(\mathbf{x_1})-(1-\lambda)f(\mathbf{x_2})
+    \end{align*}
+    Similarly, since $-f$ is convex, we also have that:
+    \begin{align*}
+      -f(\lambda\mathbf{x_1}+(1-\lambda)\mathbf{x_2}) &\leq -\lambda f(\mathbf{x_1})-(1-\lambda)f(\mathbf{x_2})
+    \end{align*}
+    Therefore, $f(\lambda\mathbf{x_1}+(1-\lambda)\mathbf{x_2}) = \lambda f(\mathbf{x_1})+(1-\lambda)f(\mathbf{x_2})$. This contradicts the fact that $\mathbf{x_1},\mathbf{x_2}$ does not satisfy equation (3) for all scalars in $\mathbb{R}$. Therefore, $f$ is affine.
+  \item[7.21]
+    $\Longrightarrow$
+
+      Suppose $\mathbf{x^*}$ is a local minimizer for the problem with objective function $f$. Since $\phi$ is strictly increasing, then for all $\mathbf{x}\neq\mathbf{x^*}$ that satisfy the constraints, $f(\mathbf{x^*})\leq f(\mathbf{x}) \Longrightarrow \phi\circ f(\mathbf{x^*})\leq \phi\circ f(\mathbf{x})$ so by definition, $\mathbf{x^*}$ is also a minimizer for the objective function $\phi\circ f$.
+      
+    $\Longleftarrow$
+
+      Suppose $\mathbf{x^*}$ is a local minimizer for the problem with objective function $\phi\circ f$ but not a local minimzer for the problem with objective function $f$. Then there exists $\mathbf{x_0}$ in the neighborhood of $\mathbf{x^*}$ that satisfies the constraints and $f(\mathbf{x_0}) \leq f(\mathbf{x^*}) \Longrightarrow \phi\circ f(\mathbf{x_0})\leq \phi\circ f(\mathbf{x^*})$, which contradicts the fact that $\mathbf{x^*}$ is a local minimizer for $\phi\circ f$. Thus, $\mathbf{x^*}$ is also a local minimizer for $f$.
+\end{enumerate}
+
+\end{document}
