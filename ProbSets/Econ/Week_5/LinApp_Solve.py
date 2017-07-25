@@ -100,16 +100,16 @@ def qzswitch(i, A, B, Q, Z):
         print ("qzswitch(): Inputs unchanged!")
         return A, B, Q, Z
     else:
-       wz = wz/n
-       xy = xy/m
-       wz = vstack(( wz, hstack((-wz[1].conj().T, wz[0].conj().T)) ))
-       xy = vstack(( xy, hstack((-xy[1].conj().T, xy[0].conj().T)) ))
-       A[i-1:i+1,:] = xy.dot(A[i-1:i+1,:])
-       B[i-1:i+1,:] = xy.dot(B[i-1:i+1,:])
-       A[:,i-1:i+1] = A[:,i-1:i+1].dot(wz)
-       B[:,i-1:i+1] = B[:,i-1:i+1].dot(wz)
-       Z[:,i-1:i+1] = Z[:,i-1:i+1].dot(wz)
-       Q[i-1:i+1,:] = xy.dot(Q[i-1:i+1,:])
+        wz = wz/n
+        xy = xy/m
+        wz = vstack(( wz, hstack((-wz[1].conj().T, wz[0].conj().T)) ))
+        xy = vstack(( xy, hstack((-xy[1].conj().T, xy[0].conj().T)) ))
+        A[i-1:i+1,:] = xy.dot(A[i-1:i+1,:])
+        B[i-1:i+1,:] = xy.dot(B[i-1:i+1,:])
+        A[:,i-1:i+1] = A[:,i-1:i+1].dot(wz)
+        B[:,i-1:i+1] = B[:,i-1:i+1].dot(wz)
+        Z[:,i-1:i+1] = Z[:,i-1:i+1].dot(wz)
+        Q[i-1:i+1,:] = xy.dot(Q[i-1:i+1,:])
     return A, B, Q, Z
 
 def qzdiv(stake, A, B, Q, Z):

@@ -6,7 +6,6 @@
 \usepackage{versions}
 \usepackage{crop}
 \usepackage{multicol}
-\usepackage{graphicx}
 \usepackage{makeidx}
 \usepackage{hyperref}
 \usepackage{ifthen}
@@ -16,7 +15,6 @@
 \usepackage{placeins}
 \usepackage{framed}
 \usepackage{enumitem}
-\usepackage{threeparttable}
 \usepackage{geometry}
 \geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
 \usepackage{multirow}
@@ -27,10 +25,15 @@
 \usepackage{float,color, colortbl}
 %\usepackage[pdftex]{graphicx}
 \usepackage{hyperref}
-\usepackage{tabu}
+%\usepackage{tabu}
 \usepackage{appendix}
 \usepackage{listings}
 \usepackage{exercise}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{threeparttablex}
+\usepackage{tablefootnote}
 
 \include{thmstyle}
 \bibliographystyle{aer}
@@ -366,18 +369,18 @@
 	Using section 1.4 and the fact that $\bar{K} = A^{\frac{1}{1-\alpha}} = (\alpha\beta)^{\frac{1}{1-\alpha}}$, we have that:
 
 	\begin{align*}
-		F &= \frac{\alpha ((\alpha\beta)^{\frac{1}{1-\alpha}})^{\alpha-1}}{((\alpha\beta)^{\frac{1}{1-\alpha}})^\alpha-((\alpha\beta)^{\frac{1}{1-\alpha}})} = \frac{1}{\beta(\alpha\beta)^{\frac{1}{1-\alpha}}((\alpha\beta)^\alpha -1)} \\
-		G &= - F(\alpha +((\alpha\beta)^{\frac{1}{1-\alpha}})^{\alpha-1}) = -F(\alpha + \frac{1}{\alpha\beta}) \\
-		H &= F(\alpha((\alpha\beta)^{\frac{1}{1-\alpha}})^{\alpha-1}) = -\frac{F}{\beta} \\
-		L &= -F(\alpha\beta)^{\frac{\alpha}{1-\alpha}}\\
-		M &= H = -\frac{F}{\beta} \\
-		N &= \rho
+		F &= \frac{\alpha\beta\bar{K}^{\alpha-1}}{\bar{K}^\alpha-\bar{K}} = 2.708 \\
+		G &= -F(\alpha+\bar{K}^{\alpha-1}) = -8.843 \\
+		H &= F(\alpha\bar{K}^{\alpha-1}) = 2.763 \\
+		L &= -F\bar{K} = -0.522\\
+		M &= F(\bar{K}^\alpha) = 1.522 \\
+		N &= \rho - 0.95
 	\end{align*}
 
 	Now we can solve for $P$ and $Q$:
 	\begin{align*}
-		P &= \frac{-G \pm \sqrt{G^2-4FH}}{2F} = \frac{F(\alpha + \frac{1}{\alpha\beta}) \pm \sqrt{F^2(\alpha + \frac{1}{\alpha\beta})^2 + \frac{4F^2}{\beta}}}{2F} = \frac{\alpha + \frac{1}{\alpha\beta} \pm \sqrt{(\alpha+\frac{1}{\alpha\beta})^2+\frac{4}{\beta}}}{2} \\
-		Q &= -\frac{LN+M}{FN+FP+G} = \frac{F(\alpha\beta)^{\frac{\alpha}{1-\alpha}}\rho + \frac{F}{\beta}}{F\rho+FP-F(\alpha+\frac{1}{\alpha\beta})} = \frac{(\alpha\beta)^{\frac{\alpha}{1-\alpha}}\rho + \frac{1}{\beta}}{\rho+\frac{-(\alpha + \frac{1}{\alpha\beta}) \pm \sqrt{(\alpha+\frac{1}{\alpha\beta})^2+\frac{4}{\beta}}}{2} }
+		P &= \frac{-G \pm \sqrt{G^2-4FH}}{2F} = 0.35 \\
+		Q &= -\frac{LN+M}{FN+FP+G} = 0.193
 	\end{align*}
 
 	Using the following linearized policy function $K_{t+1} = H(K_t,z_t) \bar{K}+P(K_t-\bar{K})+Qz_t$, we plot the three dimensional surface plot:
@@ -385,15 +388,27 @@
 	\begin{figure}[H]
 		\caption{Linearized Policy Function Given Current Capital Stock and Productivity Compared with Closed Form}
 		\label{fig:brock_and_mirman}
-		\includegraphics[width=\textwidth]{Brock_and_Merman_linearized_policy.png}
+		\includegraphics[width=0.8\textwidth]{Brock_and_Merman_linearized_policy.png}
 	\end{figure}
 
-	As seen, the linearized policy function intersects the real policy function (magma color scheme) at around the steady state ($K \approx 0.19, z = 0$) but quickly deviates after that.
+	As seen, the linearized policy function intersects the real policy function (magma color scheme) at around the steady state ($K \approx 0.19, z = 0$) but deviates slightly at the non-linear parts.
 
 	% 2
 	\begin{Exercise} \label{Linear_HW_BM_Coeffs_Log}
 		Repeat the above exercise using $k \equiv \ln K$ in place of $K$ as the endogenous state variable.
 	\end{Exercise}
+
+	We replace all values of $K$ in the Euler Equation with $e^k$. When taking the log-linearization of the new Euler Equation we get the following matrix values:
+	\begin{align*}
+		F&= -0.380254 \\
+		G&= 0.468559 \\
+		H&= -0.117414 \\
+		L&= 2.569321 \\
+		M&= -2.266718 \\
+		N&=0.95 \\
+		P&= 0.35 \\
+		Q&= 6.756849
+	\end{align*}
 
 	% 3
 	\begin{Exercise} \label{Linear_HW_Algebra}
@@ -423,12 +438,69 @@
 		For the same model as above, find $\frac{\partial y}{\partial x}$ for $y\in\{\bar k, \bar c, \bar r, \bar w, \bar \ell, \bar T, \bar y, \bar i\}$ and $x\in\{\delta, \tau, \bar z, \alpha, \gamma, \xi, \beta, a \}$ using numerical techniques.
 	\end{Exercise}
 
-
+	Using a first order central difference to estimate the derivatives, we have the following derivative matrix in the jupyter notebook output (refer to problem 5).
 
 	% 6
 	\begin{Exercise} \label{Linear_HW_Base_Coeffs}
 		For the same model as above, let $X_t = \{k_{t-1}, \ell_t\}$.  Find the values of $F$, $G$, $H$, $L$, $M$, $N$, $P$ and $Q$.
 	\end{Exercise}
+
+	In order to coincide with the problem, we will use  $X_t = \{k_t,\ell_{t-1}\}$. In which case, the Uhlig's matrices are (for the log-linearized problem):
+	\[
+		F =
+		\begin{bmatrix}
+			-17.857 & 3.155\\
+			0 & 0
+		\end{bmatrix}
+	\]
+
+	\[
+		G =
+		\begin{bmatrix}
+			36.196 & -3.254\\
+			-22.527 & 8.638
+		\end{bmatrix}
+	\]
+
+	\[
+		H =
+		\begin{bmatrix}
+			-18.24 & 0 \\
+			22.277 & 0
+		\end{bmatrix}
+	\]
+
+	\[
+		L =
+		\begin{bmatrix}
+			3.155 \\
+			0
+		\end{bmatrix}
+	\]
+
+	\[
+		M =
+		\begin{bmatrix}
+			-3.254 \\
+			3.004
+		\end{bmatrix}
+	\]
+
+	\[
+		P =
+		\begin{bmatrix}
+			0.915 & 0 \\
+			-0.192 & 0
+		\end{bmatrix}
+	\]
+
+	\[
+		Q =
+		\begin{bmatrix}
+			0.129\\
+			-0.011
+		\end{bmatrix}
+	\]
 
 	% 7
 	\begin{Exercise} \label{Linear_HW_Base_Sims}
@@ -439,26 +511,113 @@
 		For each simulation save the time-series for GDP, consumption, investment, and the labor input.  When all 10,000 simulations have finished generate a graph for each of these time-series showing the average value over the simulations for each period, and also showing the five and ninety-five percent confidence bands for each series each period.
 	\end{Exercise}
 
+	\begin{figure}[H]
+		\caption{GDP after 10,000 Simulations}
+		\label{fig:GDP_10000}
+		\includegraphics[width=0.7\textwidth]{GDP.png}
+	\end{figure}
+
+	\begin{figure}[H]
+		\caption{Consumption after 10,000 Simulations}
+		\label{fig:consumption_10000}
+		\includegraphics[width=0.7\textwidth]{consumption.png}
+	\end{figure}
+
+	\begin{figure}[H]
+		\caption{Investment after 10,000 Simulations}
+		\label{fig:investment_10000}
+		\includegraphics[width=0.7\textwidth]{investment.png}
+	\end{figure}
+
+	\begin{figure}[H]
+		\caption{Labor after 10,000 Simulations}
+		\label{fig:labor_10000}
+		\includegraphics[width=0.7\textwidth]{labor.png}
+	\end{figure}
+
 	% 8
 	\begin{Exercise} \label{Linear_HW_Base_Moments}
-		For the same model as above, calculate: the mean, volatility (standard deviation), coefficient of variation (mean divided by standard deviation), relative volatility (standard deviation divided bu the standard deviation of output), persistence (autocorrelation), and cyclicality (correlation with output); for each series over each simulation and report the average values and standard errors for these moments over the 10,000 simulations.
+		For the same model as above, calculate: the mean, volatility (standard deviation), coefficient of variation (mean divided by standard deviation), relative volatility (standard deviation divided by the standard deviation of output), persistence (autocorrelation), and cyclicality (correlation with output); for each series over each simulation and report the average values and standard errors for these moments over the 10,000 simulations.
 	\end{Exercise}
+
+	Please refer to the juputer notebook for the result with all the moments.
 
 	% 9
 	\begin{Exercise} \label{Linear_HW_Base_IRFs}
 		For the same model as above, generate impulse response functions for: GDP, consumption, investment and total labor input; with lags from zero to forty periods.
 	\end{Exercise}
 
+	\begin{figure}[H]
+		\caption{Impulse Response of GDP}
+		\label{fig:GDP_impulse}
+		\includegraphics[width=0.7\textwidth]{GDPimpulse.png}
+	\end{figure}
+
+	\begin{figure}[H]
+		\caption{Impulse Response of Consumption}
+		\label{fig:consumption_impulse}
+		\includegraphics[width=0.7\textwidth]{Consumptionimpulse.png}
+	\end{figure}
+
+	\begin{figure}[H]
+		\caption{Impulse Response of Investment}
+		\label{fig:investment_impulse}
+		\includegraphics[width=0.7\textwidth]{Investmentimpulse.png}
+	\end{figure}
+
+	\begin{figure}[H]
+		\caption{Impulse Response of Labor}
+		\label{fig:labor_impulse}
+		\includegraphics[width=0.7\textwidth]{Laborimpulse.png}
+	\end{figure}
+
 	% 10
 	\begin{Exercise} \label{Linear_HW_OLG}
 		Recall the TPI exercises from the OLG chapter.  Use the linear approximation methods from section \ref{Linear_LogLinApprox} to solve for the non-steady state equilibrium transition path of the economy from $(k_{2,1},k_{3,1})=(0.8\bar{k}_2,1.1\bar{k}_3)$ to the steady-state $(\bar{k}_2,\bar{k}_3)$. Use the same value for $T$ as you used when you solved the problem using time path iteration (TPI).  Plot the time paths for $k_2$, $k_3$ and $K$.  Compare the resulting time paths for the two methods.  Comment on the tradeoff between accuracy and compute time based upon this comparison.
 	\end{Exercise}
+
+	\begin{figure}[H]
+		\caption{Transition Path for K2}
+		\label{fig:k2_tpi}
+		\includegraphics[width=0.7\textwidth]{k2TPI.png}
+	\end{figure}
+
+	\begin{figure}[H]
+		\caption{Transition Path for K3}
+		\label{fig:k3_tpi}
+		\includegraphics[width=0.7\textwidth]{k3TPI.png}
+	\end{figure}
+
+	\begin{figure}[H]
+		\caption{Transition Path for K (Capital Stock)}
+		\label{fig:K_tpi}
+		\includegraphics[width=0.7\textwidth]{KTPI.png}
+	\end{figure}
+
+	The graph for capital stock is very similar to the time path iteration result for capital, thus the linear approximation seems to be a good one. In this case, since the compute time is faster and more straight forward, it is a good tradeoff between accuracy and compute time.
 
 	% 11
 	\begin{Exercise} \label{Linear_HW_OLG_Stoch}
 		Repeat the exercise above only this time assume there is a stochastic shock to the model, so that $A$ is replaced by $e^{z_t}$ with $z_t = \rho_z z_{t-1} + \epsilon_t;\,\epsilon_t \sim \text{i.i.d} (0,\sigma_z^2)$.  Let $\sigma_z=.02$ and $\rho_z=.9^{20}$.  As with exercise 9 above, run 10,000 simulations and report the average and confidence bands for GDP, total consumption and investment.
 	\end{Exercise}
 
+	\begin{figure}[H]
+		\caption{GDP for OLG after 10,000 Simulations}
+		\label{fig:GDP_OLG}
+		\includegraphics[width=0.7\textwidth]{GDP_OLG.png}
+	\end{figure}
+
+	\begin{figure}[H]
+		\caption{Consumption for OLG after 10,000 Simulations}
+		\label{fig:Consumption_OLG}
+		\includegraphics[width=0.7\textwidth]{Consumption_OLG.png}
+	\end{figure}
+
+	\begin{figure}[H]
+		\caption{Investment for OLG after 10,000 Simulations}
+		\label{fig:Investment_OLG}
+		\includegraphics[width=0.7\textwidth]{Investment_OLG.png}
+	\end{figure}
 
 \section*{Perturbation}\label{Perturb_HW}
 \setcounter{Exercise}{0}
@@ -508,9 +667,9 @@
 	\end{Exercise}
 
 	% 6
-	\begin{Exercise} \label{Perturb_HW_BAse}
-		Repeat Exercise \ref{Perturb_HW_BM} above using the baseline model from section 6 in the linearization chapter.  Generate figures similar to those you generated in the Linearization chapter in Exercise 7.  Compare this plot with the one from that exercise.
-	\end{Exercise}
+	% \begin{Exercise} \label{Perturb_HW_BAse}
+	% 	Repeat Exercise \ref{Perturb_HW_BM} above using the baseline model from section 6 in the linearization chapter.  Generate figures similar to those you generated in the Linearization chapter in Exercise 7.  Compare this plot with the one from that exercise.
+	% \end{Exercise}
 
 
 \section*{Filtering}\label{Filter_HW}
