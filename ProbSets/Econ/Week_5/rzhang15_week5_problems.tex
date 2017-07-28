@@ -16,6 +16,8 @@
 \usepackage{framed}
 \usepackage{enumitem}
 \usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{rotating}
 \geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
 \usepackage{multirow}
 \usepackage[table]{xcolor}
@@ -31,7 +33,6 @@
 \usepackage{exercise}
 \usepackage{multirow}
 \usepackage{tabularx}
-\usepackage{booktabs}
 \usepackage{threeparttablex}
 \usepackage{tablefootnote}
 
@@ -729,15 +730,19 @@
 
     % 6
     \begin{Exercise} \label{Filter_HW_Moments}
-        Replicate Table \ref{Stylized_USData_Tab} using data collected from the sites mentioned in Section \ref{Sec_FindData}.  Use quarterly data going back as far as 1947, if possible.  Do this for each of the following filters:
-        \begin{itemize}
-          \setlength\itemsep{0em}
-          \item A linear trend filter
-          \item the first difference ($y_t - y_{t-1}$) filter
-          \item HP($\lambda=1600$)
-          \item BP(6,32,$K=8$)
-        \end{itemize}
-    \end{Exercise}
+			Refer to table on next page.
+		\end{Exercise}
+			\begin{sidewaystable}
+				\centering\footnotesize
+				\caption{Measures of US Economic Indicators Using Different Filters}
+        \begin{tabular}{lllllllllllll}
+					\toprule {} & Vol-HP & Per-HP & Cyc-HP & Vol-BP & Per-BP & Cyc-BP & Vol-Lin & Per-Lin & Cyc-Lin & Vol-Diff & Per-Diff & Cyc-Diff \\
+					\midrule
+					GDP                   &      0.498303 &       0.999992 &       0.999568 &      0.478467 &        0.99978 &       0.999747 &       0.495655 &               1 &        0.993965 &        0.499203 &         0.999509 &          0.99987 \\Pers. Con.  &      0.539311 &       0.999993 &       0.999274 &      0.515885 &       0.999871 &       0.999476 &       0.537091 &               1 &        0.993965 &        0.539628 &         0.999716 &         0.999521 \\Investment            &      0.611305 &       0.999941 &       0.995782 &       0.59688 &       0.996733 &       0.985267 &       0.602706 &               1 &        0.993965 &        0.619251 &         0.991419 &         0.987428 \\GDP Deflator          &      0.620475 &       0.999973 &       0.979502 &      0.605302 &       0.999949 &       0.977359 &       0.603623 &               1 &        0.993965 &        0.621835 &         0.999941 &         0.978924 \\Gov't Spending   &      0.321909 &       0.999935 &       0.992287 &      0.317325 &       0.999412 &       0.990146 &       0.316673 &               1 &        0.993965 &        0.324939 &         0.998068 &         0.989117 \\Net Exports           &     0.0161247 &       0.999506 &      -0.877858 &      0.016617 &       0.990752 &      -0.841374 &      0.0142258 &               1 &       -0.993965 &       0.0168077 &         0.970813 &         -0.84191 \\Exports               &      0.949775 &       0.999984 &        0.99586 &      0.905025 &       0.999012 &       0.993373 &       0.946084 &               1 &        0.993965 &        0.951883 &         0.995837 &         0.993314 \\Imports               &      0.974143 &       0.999979 &       0.997152 &      0.936427 &       0.999142 &       0.995742 &       0.968272 &               1 &        0.993965 &        0.976538 &         0.997259 &         0.995578 \\Employment       &     0.0300813 &       0.998878 &       0.412121 &     0.0346609 &       0.990421 &       0.489775 &      0.0112862 &               1 &        0.995895 &       0.0336355 &         0.986271 &         0.394059 \\Hours                 &     0.0135803 &       0.998141 &       0.647222 &     0.0185502 &       0.919957 &       0.383404 &      0.0091201 &               1 &        0.993965 &       0.0190196 &         0.788303 &         0.466573 \\Tot. Labor           &      0.265713 &       0.999989 &       0.989319 &      0.259695 &       0.999919 &        0.98929 &       0.260411 &               1 &        0.993965 &          0.2666 &         0.999701 &         0.989211 \\Nominal Wage          &       1.06512 &       0.999994 &       0.993662 &       1.03173 &       0.999944 &       0.993215 &        1.05114 &               1 &        0.993965 &         1.06699 &         0.999867 &         0.993744 \\Real Wage             &     0.0298854 &       0.998452 &       0.824696 &     0.0331357 &       0.960943 &       0.640682 &      0.0253509 &               1 &        0.995232 &       0.0351066 &         0.832292 &         0.653145 \\Money Supply          &      0.918733 &       0.999973 &       0.984041 &      0.844314 &       0.999843 &       0.984853 &       0.910256 &               1 &        0.993965 &        0.913337 &          0.99976 &         0.983399 \\Real Money Supply     &      0.245467 &       0.999661 &       0.814297 &      0.177363 &         0.9945 &       0.831952 &        0.20955 &               1 &        0.993965 &        0.241215 &         0.994034 &          0.80182 \\CPI                   &        0.7146 &       0.999973 &       0.982461 &      0.696364 &       0.999926 &       0.980242 &       0.698256 &               1 &        0.993965 &        0.715918 &         0.999892 &         0.981609 \\Labor Productivity    &      0.238315 &       0.999945 &       0.987395 &      0.224963 &         0.9989 &       0.984738 &        0.23534 &               1 &        0.993965 &        0.238894 &         0.997374 &         0.985848 \\Unemployment Rate     &       0.17536 &       0.995719 &       -0.12662 &      0.258979 &       0.966106 &     -0.0608315 &      0.0271532 &               1 &       -0.997313 &        0.245948 &         0.946555 &       -0.0553102 \\Participation Rate    &     0.0442793 &       0.999741 &       0.792422 &     0.0457894 &       0.997803 &       0.882234 &      0.0329496 &               1 &        0.993965 &       0.0450411 &         0.990338 &         0.800229 \\Nominal Interest Rate &       1.27646 &       0.999238 &      -0.577564 &       1.14614 &       0.978522 &      -0.400193 &       0.830673 &               1 &       -0.993965 &         1.39516 &         0.960212 &        -0.511871 \\Real Interest Rate    &       1.75074 &       0.999618 &      -0.822111 &       1.53049 &       0.988187 &      -0.745699 &        1.52893 &               1 &       -0.993965 &         1.83218 &         0.977011 &        -0.773336 \\Budget Deficit        &     0.0049559 &       0.997781 &      -0.629808 &    0.00722639 &       0.563744 &      -0.376839 &     0.00333776 &               1 &        -0.99438 &       0.0124356 &       -0.0523276 &        -0.241085 \\
+					\bottomrule
+					\end{tabular}
+				\end{sidewaystable}
+
 
 \end{spacing}
 
